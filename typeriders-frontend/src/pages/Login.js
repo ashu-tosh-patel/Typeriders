@@ -20,7 +20,7 @@ export default function Login() {
         <form onSubmit={handleSubmit} className="login-form">
             <h2>Login</h2>
             <label>
-                <span>Username </span>
+                <span>Email: </span>
                 <input
                     type="email"
                     onChange={(e) => setEmail(e.target.value)}

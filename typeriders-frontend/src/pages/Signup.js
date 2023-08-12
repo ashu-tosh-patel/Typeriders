@@ -6,7 +6,7 @@ export default function SignUp() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [displayName, setDisplayName] = useState('')
+    const [userName, setUserName] = useState('')
     // const { signup, isPending, error } = useSignup()
 
     const handleSubmit = (e) => {
@@ -15,10 +15,18 @@ export default function SignUp() {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="signup-form">
+        <form onSubmit={handleSubmit} method className="signup-form">
             <h2>SignUp</h2>
             <label>
-                <span>Username: </span>
+                <span>User Name: </span>
+                <input
+                    type="text"
+                    onChange={(e) => setUserName(e.target.value)}
+                    value={userName}
+                />
+            </label>
+            <label>
+                <span>Email: </span>
                 <input
                     type="email"
                     onChange={(e) => setEmail(e.target.value)}
@@ -31,14 +39,6 @@ export default function SignUp() {
                     type="password"
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
-                />
-            </label>
-            <label>
-                <span>Display Name: </span>
-                <input
-                    type="text"
-                    onChange={(e) => setDisplayName(e.target.value)}
-                    value={displayName}
                 />
             </label>
             {<button className="btn">Signup</button>}
