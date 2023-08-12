@@ -7,6 +7,7 @@ import Singleplayer from './pages/SinglePlayer';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Guest from './pages/Guest';
+import Profile from './pages/Profile';
 
 // Importing Components
 import Sidebar from './components/Sidebar';
@@ -20,6 +21,8 @@ function App() {
         <div className="container">
           <Navbar />
           <Routes>
+
+            <Route path="/" element={<Profile/>} />
             <Route path="/single" element={<Singleplayer />} />
             <Route path="/multi" element={<Multiplayer />} />
             <Route path="/login" element={<Login />} />

@@ -8,6 +8,7 @@ import './Sidebar.css'
 import singleimg from '../assets/singleplayer.png'
 import multiimg from '../assets/multiplayer.png'
 import logo from '../assets/mainicon.png'
+import profile from '../assets/profile.png'
 
 const Sidebar = () => {
   return (
@@ -20,6 +21,12 @@ const Sidebar = () => {
       </div>
       <nav className="links">
         <ul>
+          <li>
+            <NavLink to="/">
+              <img src={profile} alt="##"></img>
+              <span>Profile</span>
+            </NavLink>
+          </li>
           <li>
             <NavLink to="/single">
               <img src={singleimg} alt="##"></img>
