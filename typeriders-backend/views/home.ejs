@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeRiders</title>
+</head>
+<body>
+    <section id = "timeout"><%= duration %> minutes</section>
+    <section id = "diff" > Level <%= difficulty %> </section>
+    <section it = "test-box">
+        <div id = "test-box-text">
+            <% wordarray.forEach( (word)=>{ %>
+            <span>
+                <%= word %>
+            </span>
+            <% }); %>
+        </div>
+    </section>
+    <form>
+        <input onkeyup="inputType(this)"
+        type="text" id="write-box"/>
+    </form>
+    <section id="score">
+        <p>Your Scored:</p>
+        <p id="score-wpm">60wpm</p>
+    </section>
+    <script src=""></script>
+</body>
+</html>
