@@ -1,0 +1,9 @@
+/* TypingGame.css */
+.current-word {
+    background-color: #f9c784;
+  }
+  
+  .current-word.correct {
+    background-color: #97e897;
+  }
+  
