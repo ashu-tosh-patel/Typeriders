@@ -13,7 +13,20 @@ import Profile from './pages/Profile';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 
+//main image
+import Logo from './assets/mainicon.png';
+
 function App() {
+
+  const user = {
+    profileImage: Logo,
+    name: 'Ashutosh Patel',
+    email: 'ashu9889@example.com',
+    gamesPlayed: 25,
+    averageTypingSpeed: 50,
+    bestTypingSpeed: 80,
+  };
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -22,7 +35,7 @@ function App() {
           <Navbar />
           <Routes>
 
-            <Route path="/" element={<Profile/>} />
+            <Route path="/" element={<Profile {...user} />} />
             <Route path="/single" element={<Singleplayer />} />
             <Route path="/multi" element={<Multiplayer />} />
             <Route path="/login" element={<Login />} />
