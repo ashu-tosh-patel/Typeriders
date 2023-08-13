@@ -4,18 +4,37 @@ import './Signup.css'
 export default function SignUp() {
 
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [userName, setUserName] = useState('')
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [userName, setUserName] = useState('');
     // const { signup, isPending, error } = useSignup()
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        // signup(email, password, displayName)
+    const [status, setStatus] = useState('status...');
+    const handleSubmit = async (e) => {
+            e.preventDefault();
+            setStatus("Sending...");
+            let details = {
+                username: userName,
+                email: email,
+                password: password,
+            };
+            try{
+                let response = await fetch("http://localhost:2000/signup", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json;charset=utf-8",
+                    },
+                    body: JSON.stringify(details),
+                });
+                setStatus("Submit");
+                let result = await response.json();
+           }
+           catch (err) {
+            console.log(err);
+           }
     }
 
     return (
-        <form onSubmit={handleSubmit} method className="signup-form">
+        <form onSubmit={handleSubmit} className="signup-form">
             <h2>SignUp</h2>
             <label>
                 <span>User Name: </span>
@@ -41,10 +60,8 @@ export default function SignUp() {
                     value={password}
                 />
             </label>
-            {<button className="btn">Signup</button>}
-            {<button className="btn" disabled>loading...</button>}
-
-
+            {<button onClick={handleSubmit} className="btn">Signup</button>}
+            {<button type='button' className="btn" >{status}</button>}
         </form>
     )
 }

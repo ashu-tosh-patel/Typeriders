@@ -40,7 +40,7 @@ async function requestLoginHandler(req, res){
         let validate = await result.validPassword(req.body.password);
         if(validate===false) return res.status(403).send({"status": "error" ,"message":"Incorrect Password!!!"}); // response distinctly
         const setJwt = setValue(result.userId);
-        await res.cookie('token', setJwt);
+        const rslt = await res.cookie('token', setJwt);
         return res.status(200).send({"status": "success", "message": "login successful", "userId":`${result.userId}`, "userName": `${result.username}`}); //send response only
    }
    catch(err){
@@ -63,6 +63,17 @@ async function requestGuest(req, res){
    catch(err){
       return res.send(new AppError("No guest user is found", 404));
    }
+}
+
+
+async function requestLogout(req, res) {
+    try {
+        const userId = req.params.userId;
+        
+    }
+    catch(err){
+        return res.send(new AppError("Nothing to logout", 404));
+    }
 }
 
 module.exports ={  requestLoginHandler, requestSignupHandler, requestGuest};
