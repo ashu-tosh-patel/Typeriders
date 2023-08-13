@@ -12,6 +12,7 @@ const userRouter = require('./router/user');
 const {restrictAuth} = require('./middlewares/auth');
 const generateWords = require('./service/generateWords');
 const session = require('express-session');
+const cors = require('cors');
 
 
 // generateWords();
@@ -21,6 +22,8 @@ mongoose.connect(url).then(()=>console.log("connect to db")).catch((err)=>{
 });
 
 app.set('view engine', 'ejs');
+
+app.use(cors({credentials:true, origin: 'http://localhost:3000'}));
 
 app.use(bodyParser.urlencoded({ extended: false }));        
 
@@ -32,6 +35,6 @@ app.use('/', authRouter);
 
 app.use('/user', restrictAuth, userRouter);
 
-app.listen(port,()=>{
-    console.log("app is listening on Port 1000");
+app.listen(port, ()=>{
+    console.log(`app is listening on Port ${port}`);
 })

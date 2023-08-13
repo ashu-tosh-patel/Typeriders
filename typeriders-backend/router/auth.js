@@ -19,4 +19,6 @@ router.post('/login',  requestLoginHandler);
 
 router.get('/guest',  requestGuest);
 
+router.get('/logout');
+
 module.exports = router;

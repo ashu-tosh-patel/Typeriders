@@ -2,7 +2,6 @@ const uniqid = require('uniqid');
 const User = require('../models/auth');
 const RaceSchema = require('../models/raceModel');
 const AppError = require('../utils/appError');
-const { getValue } = require('../service/authentication');
 async function requestRaceHandler(req, res){
     try{
         const userId = req.params.userId;
