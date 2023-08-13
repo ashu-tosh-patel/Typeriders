@@ -1,9 +1,28 @@
 /* TypingGame.css */
 .current-word {
     background-color: #f9c784;
-  }
-  
-  .current-word.correct {
+    /* color: white;
+    background-color: black; */
+}
+
+.current-word.correct {
     background-color: #97e897;
-  }
-  
+}
+
+.box {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.form {
+
+    text-align: center;
+    max-width: 360px;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+input[type="text"] {
+    font-size: 24px;
+}
