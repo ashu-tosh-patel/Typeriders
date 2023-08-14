@@ -11,28 +11,28 @@ export default function Login() {
     const [password, setPassword] = useState('')
     const [status, setStatus] = useState("status...");
     const handleSubmit = async (e) => {
-            e.preventDefault();
-            setStatus("Sending...");
-            let details = {
-                email: email,
-                password: password,
-            };
-            try{
-                let response = await fetch("http://localhost:2000/login", {
-                    method: "POST",
-                    headers: {
+        e.preventDefault();
+        setStatus("Sending...");
+        let details = {
+            email: email,
+            password: password,
+        };
+        try {
+            let response = await fetch("http://localhost:2000/login", {
+                method: "POST",
+                headers: {
                     "Content-Type": "application/json;charset=utf-8"
-                    },
-                    body: JSON.stringify(details),
-                    credentials: 'include'
-                });
-                setStatus("Submit");
-                let result = await response.json();
-                alert(result.status);
-            }
-            catch(err){
-                console.log(err);
-            }
+                },
+                body: JSON.stringify(details),
+                credentials: 'include'
+            });
+            setStatus("Submit");
+            let result = await response.json();
+            alert(result.status);
+        }
+        catch (err) {
+            console.log(err);
+        }
     }
     // const { login, error, isPending } = useLogin()
     return (
