@@ -1,6 +1,4 @@
-import { useState } from 'react'
-// import { useLogin } from '../../hooks/useLogin'
-
+import { useEffect, useState } from 'react'
 
 //styles
 import './Login.css'
@@ -9,7 +7,8 @@ export default function Login() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [status, setStatus] = useState("status...");
+    const [status, setStatus] = useState(null);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus("Sending...");
@@ -26,15 +25,15 @@ export default function Login() {
                 body: JSON.stringify(details),
                 credentials: 'include'
             });
-            setStatus("Submit");
             let result = await response.json();
-            alert(result.status);
-        }
-        catch (err) {
+            setStatus(result.status); 
+        } catch (err) {
             console.log(err);
         }
     }
-    // const { login, error, isPending } = useLogin()
+
+    // Remove useEffect, since it's not needed here
+
     return (
         <form onSubmit={handleSubmit} className="login-form">
             <h2>Login</h2>
@@ -54,8 +53,8 @@ export default function Login() {
                     value={password}
                 />
             </label>
-            {<button onClick={handleSubmit} className="btn">Login</button>}
-            {<button className="btn" disabled>{status}</button>}
+            {!status && <button onClick={handleSubmit} className="btn">Login</button>}
+            {status && <button className="btn" disabled>{status}</button>}
         </form>
     );
 };

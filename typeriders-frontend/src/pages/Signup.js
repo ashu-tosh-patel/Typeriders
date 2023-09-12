@@ -1,5 +1,6 @@
 import { useState } from 'react'
-// import { useSignup } from '../../hooks/useSignup'
+
+
 import './Signup.css'
 export default function SignUp() {
 
@@ -7,30 +8,29 @@ export default function SignUp() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [userName, setUserName] = useState('');
-    // const { signup, isPending, error } = useSignup()
-    const [status, setStatus] = useState('status...');
+    const [status, setStatus] = useState(null);
     const handleSubmit = async (e) => {
-            e.preventDefault();
-            setStatus("Sending...");
-            let details = {
-                username: userName,
-                email: email,
-                password: password,
-            };
-            try{
-                let response = await fetch("http://localhost:2000/signup", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json;charset=utf-8",
-                    },
-                    body: JSON.stringify(details),
-                });
-                setStatus("Submit");
-                let result = await response.json();
-           }
-           catch (err) {
+        e.preventDefault();
+        setStatus("Sending...");
+        let details = {
+            username: userName,
+            email: email,
+            password: password,
+        };
+        try {
+            let response = await fetch("http://localhost:2000/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json;charset=utf-8",
+                },
+                body: JSON.stringify(details),
+            });
+            // setStatus("Submit");
+            let result = await response.json();
+        }
+        catch (err) {
             console.log(err);
-           }
+        }
     }
 
     return (
@@ -60,8 +60,8 @@ export default function SignUp() {
                     value={password}
                 />
             </label>
-            {<button onClick={handleSubmit} className="btn">Signup</button>}
-            {<button type='button' className="btn" >{status}</button>}
+            {!status && <button onClick={handleSubmit} className="btn">Signup</button>}
+            {status && <button type='button' className="btn" >{status}</button>}
         </form>
     )
 }
